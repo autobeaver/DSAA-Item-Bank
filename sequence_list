@@ -2,6 +2,7 @@ class LNode: #node
     def __init__(self,elem,next_ = None):
         self.elem = elem
         self.next = next_
+        
 class LList: #list
     def __init__(self):
         self._head = None #head node
