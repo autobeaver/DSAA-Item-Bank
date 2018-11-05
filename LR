@@ -1,0 +1,66 @@
+ class LogisiticRegression:
+     
+     def __init__(self,filename,targetname,rho = 0.1,alpha = 30,phi = 0.1,delt = 0.00001,beta = 0.1):
+         self.filename = filename    #文件路径与文件名
+         self.targetname = targetname    #label名
+         self.rho = rho    #正则化项参数
+         self.alpha = alpha    #迭代次数
+         self.phi = phi    #参数更新学习步长
+         self.delt = delt    #梯度近似计算步长
+         self.beta = beta    #梯度下降法的最小迭代梯度阈值
+         
+     def LoadData(self):
+         import pandas as pd
+         df = pd.read_csv(self.filename)
+         y = df[self.targetname]
+         x = df.drop(self.targetname,axis = 1)
+         return x,y
+
+     def initial(self):    
+         import numpy as np
+         x,y = LogisiticRegression.LoadData(self)
+         columns = x.shape[1]
+         rows = x.shape[0]
+         w = np.ones((columns,1))
+         b = np.ones((columns,1))
+         return w,b
+
+     def obj(self,rho,w,b,x,y):
+         import numpy as np
+         loss = 0.0
+         for i in range(x.shape[0]):
+             loss = loss + y[i] * np.sum((x.iloc[i].values * w + b)) - np.log(1 + np.exp(np.sum(x.iloc[i].values * w + b)))
+         L2 = rho * (np.sum(w ** 2) + np.sum(b ** 2))
+         return loss + L2
+
+     def train(self):
+         w,b = LogisiticRegression.initial(self) 
+         x,y = LogisiticRegression.LoadData(self)
+         i = 1
+         delt_w = 0.1
+         delt_b = 0.1
+         while i <= self.alpha and delt_w > self.beta and delt_b > self.beta:
+             for j in range(x.shape[1]):
+                 l1 = LogisiticRegression.obj(self,self.rho,w,b,x,y)
+                 w1 = w
+                 b1 = b
+                 w1[j] += self.delt
+                 b1[j] += self.delt
+                 delt_w = self.phi * ((LogisiticRegression.obj(self,self.rho,w1,b,x,y) - l1) / self.delt)
+                 delt_b = self.phi * ((LogisiticRegression.obj(self,self.rho,w,b1,x,y) - l1) / self.delt)
+                 w[j] += delt_w
+                 b[j] += delt_b
+             i += 1
+         return w,b
+     
+     def predict(self):
+         import numpy as np
+         w,b = LogisiticRegression.train(self)
+         x,y = LogisiticRegression.LoadData(self)
+         rows = x.shape[0]
+         p1 = np.ones((rows,1))
+         p2 = np.ones((rows,1))
+         for k in range(rows):   
+             p1[k] = np.exp(np.sum(w * x.iloc[k].values + b)) / (1 + np.exp(np.sum(w * x.iloc[k].values + b)))
+             p2[k] = 1 - p1[k]
+         return p1,p2
