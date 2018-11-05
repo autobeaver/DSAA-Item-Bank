@@ -1,0 +1,8 @@
+#1.1
+def ismultiple(n,m):
+    i = n / m
+    j = n//m
+    if isinstance(n,int) and isinstance(m,int) and i == j:
+        return True
+    else:
+        return False
