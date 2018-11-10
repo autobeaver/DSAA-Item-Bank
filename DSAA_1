@@ -10,28 +10,36 @@ def ismultiple(n,m):
 
 #1.29 浅拷贝、深拷贝
 raw = ['c', 'a', 't', 'd', 'o', 'g']
-word = ''
+words = []
 for a in range(len(raw)):
+    word = ''
     word = word + str(raw[a])
     raw2 = list(raw)
     raw2.remove(raw[a])
     for b in range(len(raw2)):
+        word4 = str(word)
         word = word + str(raw2[b])
         raw3 = list(raw2)
         raw3.remove(raw2[b])
         for c in range(len(raw3)):
+            word3 = str(word)
             word = word + str(raw3[c])
             raw4 = list(raw3)
             raw4.remove(raw3[c])
             for d in range(len(raw4)):
+                word2 = str(word)
                 word = word + str(raw4[d])
                 raw5 = list(raw4)
                 raw5.remove(raw4[d])
                 for e in range(len(raw5)):
+                    word1 = str(word)
                     word = word + str(raw5[e])
                     raw6 = list(raw5)
                     raw6.remove(raw5[e])
                     word = word + str(raw6[0])
-words = [0] * 326
-for i in range(int(len(word)/6)):
-    words[i] = word[i:i + 6]
+                    if len(word) == 6:
+                        words.append(word)
+                    word = str(word1)
+                word = str(word2)
+            word = str(word3)
+        word = str(word4)
