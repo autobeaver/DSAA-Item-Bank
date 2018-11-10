@@ -34,4 +34,4 @@ for a in range(len(raw)):
                     word = word + str(raw6[0])
 words = [0] * 326
 for i in range(int(len(word)/6)):
-    words[i] = word[i:i + 5]
+    words[i] = word[i:i + 6]
