@@ -43,3 +43,26 @@ for a in range(len(raw)):
                 word = str(word2)
             word = str(word3)
         word = str(word4)
+
+
+#1.20
+def bisection_time(x):
+    if not isinstance(x,int):
+        raise TypeError('x is not int type')
+    if x < 2:
+        raise ValueError('x < 2')
+    n = 0
+    while x >= 2:
+        a = x/2
+        b = x//2
+        if a==b:
+            n += 1
+            x = x/2
+        else:
+            return n
+    return n
+if __name__ == '__main__':
+    #x1 = bisection_time(2.0)
+    #x2 = bisection_time(-3)
+    x3 = bisection_time(47)
+    x4 = bisection_time(64)
