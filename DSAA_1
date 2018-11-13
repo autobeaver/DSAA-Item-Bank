@@ -27,6 +27,21 @@ if __name__ == '__main__':
     z = is_even(3)
 
 
+#1.3
+def minmax(data):
+    if not isinstance(data,list):
+        raise TypeError('not a list')
+    data.sort(reverse=False)
+    botom = data[0]
+    top = data[-1]
+    return tuple([botom,top])
+    
+if __name__ == '__main__':
+    x = minmax([1,2,2])
+    y = minmax([2,3,1])
+    z = minmax([2,-2,0])
+    
+    
 #1.29 浅拷贝、深拷贝
 raw = ['c', 'a', 't', 'd', 'o', 'g']
 words = []
