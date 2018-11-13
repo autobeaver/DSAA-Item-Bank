@@ -8,6 +8,25 @@ def ismultiple(n,m):
         return False
 
 
+#1.2
+def is_even(k):
+    if not isinstance(k,int):
+        raise TypeError('not int')
+    k = abs(k)
+    if k == 0:
+        return True
+    while k >= 1:
+        k -= 2
+        if k == 0:
+            return True
+        else:
+            return False
+if __name__ == '__main__':
+    x = is_even(-2)
+    y = is_even(0)
+    z = is_even(3)
+
+
 #1.29 浅拷贝、深拷贝
 raw = ['c', 'a', 't', 'd', 'o', 'g']
 words = []
