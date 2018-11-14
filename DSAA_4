@@ -1,0 +1,19 @@
+#4.1
+def find_max(s,x,n=0):
+    """ Find the max in the sequence.
+    
+    Args:
+        s:the sequence
+        x:s[0]
+        """
+    if n < len(s) - 1:
+        n += 1
+        if x < s[n]:
+            x = s[n]
+            return find_max(s,x,n)
+    else:
+        return x
+if __name__ == '__main__':
+    find_max([1,2,3,4],1)
+#  O(n)
+            
