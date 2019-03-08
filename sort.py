@@ -24,6 +24,7 @@ def insert_sort(arr):
 if __name__ == '__main__':
     arr_sort = insert_sort(arr)
 
+arr = [1,4,7,2,3]
 #2. select sort(local algrithm)
 def select_sort(arr):
     
@@ -37,11 +38,13 @@ def select_sort(arr):
                 arr[j] = target
                 target = m
             j += 1
+        arr[i]= target
     return arr
 
 if __name__ == '__main__':
     arr_sort2 = select_sort(arr)
-        
+
+arr = [1,4,7,2,3]       
 #3.exchange sort
 def exchange_sort(arr):
     for i in range(len(arr) - 1):
@@ -56,7 +59,8 @@ def exchange_sort(arr):
 if __name__ == '__main__':
     arr_sort3 = exchange_sort(arr)            
 
-#4.merge sort 
+arr = [1,4,7,2,3]
+#4.merge sort 归并排序：先拆再合并
 def merge(left,right):
     result =[]
     i, j = 0, 0
@@ -82,6 +86,7 @@ def merge_sort(arr):
 if __name__ == '__main__':
     arr_sort4 = merge_sort(arr)    
 
+arr = [1,4,7,2,3]
 #5.quick sort
 def quick_sort(arr):
     if len(arr) <= 1:
